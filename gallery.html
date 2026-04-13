@@ -1,0 +1,2188 @@
+<!DOCTYPE html>/* add sequence and video fixes */
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>HUSH Productions Gallery</title>
+
+<style>
+:root{
+    --black:#000;
+    --white:#fff;
+    --light:#000000;
+}
+
+body{
+    margin:0;
+    font-family:Arial;
+    background:var(--light);
+}
+
+/* ================= TOP BAR ================= */
+.top-bar{
+    position:relative;
+    width:100%;
+    text-align:center;
+    padding:10px 0;
+    background:#000;
+}
+
+/* BACK BUTTON */
+.top-bar .back-btn{
+    position:absolute;
+    top:50%;
+    left:15px;
+    transform:translateY(-50%);
+    background:#fff;
+    color:#000;
+    padding:10px 15px;
+    border-radius:20px;
+    text-decoration:none;
+    cursor:pointer;
+}
+
+/* LOGO */
+.top-logo img{
+    height:150px;
+    width:300px;
+    object-fit:contain;
+}
+
+/* ✅ SWITCH - CENTERED UNDER LOGO (HIDDEN BY DEFAULT) */
+.switch-box{
+    margin-top:30px;
+    display:none; /* HIDDEN BY DEFAULT */
+    justify-content:center;
+    gap:10px;
+}
+
+.switch-btn{
+    background:#222;
+    color:#fff;
+    padding:10px 18px;
+    border-radius:25px;
+    cursor:pointer;
+    border:1px solid #444;
+    font-size:13px;
+    font-weight:bold;
+    transition:0.3s;
+    min-width:80px;
+    text-align:center;
+}
+/* ✅ ADD THESE MISSING CSS RULES */
+.top-bar.event-mode .switch-box {
+    display: flex !important;
+}
+
+.top-bar.no-switch .switch-box {
+    display: none !important;
+}
+.switch-btn.active,
+.switch-btn:hover{
+    background:#fff;
+    color:#000;
+}
+
+/* ================= PAGE ================= */
+.page{
+    display:none;
+    padding:20px 20px;
+}
+.page.active{
+    display:block;
+}
+
+/* ================= GRID ================= */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+/* ================= CARD ================= */
+.card{
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+    cursor:pointer;
+    box-shadow:0 5px 20px rgba(0,1,0,1);
+    transition:0.3s;
+}
+.card:hover{
+    transform:scale(1.05);
+}
+.card img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+}
+.card h3{
+    text-align:center;
+    padding:10px;
+}
+
+/* ================= LIGHTBOX ================= */
+.lightbox{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.95);
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+}
+.lightbox.active{display:flex;}
+
+.lightbox img{
+    max-width:90%;
+    max-height:90%;
+}
+
+.lightbox button{
+    position:absolute;
+    background:white;
+    border:none;
+    padding:10px 15px;
+    cursor:pointer;
+}
+
+.close{ top:20px; right:20px; }
+.prev{ left:20px; top:50%; }
+.next{ right:20px; top:50%; }
+
+h2{
+    text-align:center;
+}
+h2 {
+    color: white;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= TOP BAR ================= -->
+<div class="top-bar no-switch" id="topBar"> <!-- Starts as no-switch -->
+    <a class="back-btn" onclick="goBack()">← Back</a>
+
+    <div class="top-logo">
+        <img src="portfolio/2.jpg">
+    </div>
+    
+    <!-- ✅ SWITCH - ONLY VISIBLE IN EVENT PAGES -->
+    <div class="switch-box">
+        <div class="switch-btn active" onclick="filterType('photo')">Photos</div>
+        <div class="switch-btn" onclick="filterType('video')">Videos</div>
+    </div>
+</div>
+<!-- ================= MAIN ================= -->
+<section id="main" class="page active">
+
+<h2>Main Categories</h2>
+
+<div class="grid">
+ 
+    <!-- ⭐ CATEGORY CARD START -->
+    <!-- 👉 COPY THIS BLOCK TO ADD NEW CATEGORY -->
+    <div class="card" onclick="openSub('weddings')">
+        <img src="Wedding_Events/Walima_&_Baraat/30.jpg">
+        <h3>Weddings</h3>
+    </div>
+    <div class="card" onclick="openSub('Parties')">
+        <img src="Parties\Private_parties/18.jpg">
+        <h3>Parties</h3>
+    </div>
+    <div class="card" onclick="openSub('private_events')">
+        <img src="Private_Events/Family_gatherings_&_get-togethers/36.jpg">
+        <h3>Private Events</h3>
+    </div>
+    <div class="card" onclick="openSub('Theme')">
+        <img src="Theme_events/Halloween/15.jpg">
+        <h3>Theme Events</h3>
+    </div>
+
+</div>
+</section>
+
+<!-- ===================================================== -->
+<!-- 🟢 2. SUBCATEGORY PAGE (ADD NEW SUBCATEGORIES HERE) -->
+<!-- ===================================================== -->
+<section id="weddings" class="page">
+
+<h2>Weddings</h2>
+
+<div class="grid">
+
+    <!-- ⭐ SUBCATEGORY CARD START -->
+    <!-- 👉 COPY THIS BLOCK TO ADD NEW SUBCATEGORY -->
+    <div class="card" onclick="openEvent('Engagement_&_Anniversaries')">
+        <img src="Wedding_Events/Engagement_&_Anniversaries/9.jpg">
+        <h3>Engagement & Anniversaries</h3>
+    </div>
+    <!-- ⭐ SUBCATEGORY CARD END -->
+
+
+    <!-- ⭐ SUBCATEGORY CARD START -->
+    <div class="card" onclick="openEvent('Mehndi_&_Maiyom_&_Dhoolki')">
+        <img src="Wedding_Events/Mehndi_&_Maiyom_&_Dhoolki/7.jpg">
+        <h3>Mehndi & Maiyom & Dhoolki</h3>
+    </div>
+    <!-- ⭐ SUBCATEGORY CARD END -->
+    <div class="card" onclick="openEvent('Walima_&_Baraat')">
+        <img src="Wedding_Events/Walima_&_Baraat/21.jpg">
+        <h3>Walima & Baraat</h3>
+    </div>
+
+</div>
+</section>
+<section id="Parties" class="page">
+
+<h2>Parties</h2>
+
+<div class="grid">
+
+    <!-- ⭐ SUBCATEGORY CARD START -->
+    <!-- 👉 COPY THIS BLOCK TO ADD NEW SUBCATEGORY -->
+    <div class="card" onclick="openEvent('Birthday_parties')">
+        <img src="Parties/Birthday_parties/24.jpg">
+        <h3>Birthday parties</h3>
+    </div>
+    <!-- ⭐ SUBCATEGORY CARD END -->
+
+
+    <!-- ⭐ SUBCATEGORY CARD START -->
+    <div class="card" onclick="openEvent('New_year_parties')">
+        <img src="Parties/New_year_parties/50.jpg">
+        <h3>New year parties</h3>
+    </div>
+    <!-- ⭐ SUBCATEGORY CARD END -->
+    <div class="card" onclick="openEvent('Private_parties')">
+        <img src="Parties/Private_parties/4.jpg">
+        <h3>Private parties</h3>
+    </div>
+
+</div>
+</section>
+<section id="private_events" class="page">
+
+<h2>Weddings</h2>
+
+<div class="grid">
+
+    <!-- ⭐ SUBCATEGORY CARD START -->
+    <!-- 👉 COPY THIS BLOCK TO ADD NEW SUBCATEGORY -->
+    <div class="card" onclick="openEvent('Birthday_events')">
+        <img src="Private_Events/Birthday_events/47.jpg">
+        <h3>Birthday events</h3>
+    </div>
+    <!-- ⭐ SUBCATEGORY CARD END -->
+
+
+    <!-- ⭐ SUBCATEGORY CARD START -->
+    <div class="card" onclick="openEvent('Family_gatherings_&_get-togethers')">
+        <img src="Private_Events/Family_gatherings_&_get-togethers/18.jpg">
+        <h3>Family gatherings & get-togethers</h3>
+    </div>
+    <!-- ⭐ SUBCATEGORY CARD END -->
+    <div class="card" onclick="openEvent('Surprise_events')">
+        <img src="Private_Events/Surprise_events/36.jpg">
+        <h3>Surprise events</h3>
+    </div>
+
+</div>
+</section>
+<section id="Theme" class="page">
+
+<h2>Theme</h2>
+
+<div class="grid">
+
+    <div class="card" onclick="openEvent('Halloween')">
+        <img src="Theme_events/Halloween/7.jpg">
+        <h3>Halloween</h3>
+    </div>
+    <div class="card" onclick="openEvent('abc_123')">
+        <img src="Theme_events/abc_123/3.jpg">
+        <h3>abc 123</h3>
+    </div>
+    <div class="card" onclick="openEvent('Baby_boss')">
+        <img src="Theme_events/Baby_boss/1.jpg">
+        <h3>Baby boss</h3>
+    </div>
+    <div class="card" onclick="openEvent('Cars')">
+        <img src="Theme_events/Cars/1.jpg">
+        <h3>Cars</h3>
+    </div>
+    <div class="card" onclick="openEvent('Micky_mouse')">
+        <img src="Theme_events/Micky_mouse/1.jpg">
+        <h3>Micky mouse</h3>
+    </div>
+    <div class="card" onclick="openEvent('Teddy_bears')">
+        <img src="Theme_events/Teddy_bears/1.jpg">
+        <h3>Teddy bears</h3>
+    </div>
+    <div class="card" onclick="openEvent('Wild')">
+        <img src="Theme_events/Wild/1.jpg">
+        <h3>Wild</h3>
+    </div>
+    <div class="card" onclick="openEvent('One')">
+        <img src="Theme_events/One/1.jpg">
+        <h3>One</h3>
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Theme_events/1.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Theme_events/2.jpg">
+    </div>
+    <!-- ⭐ SUBCATEGORY CARD END -->
+
+</div>
+</section>
+<!-- ===================================================== -->
+<!-- 🔴 3. EVENT PAGE (ADD NEW EVENTS + PHOTOS HERE) -->
+<!-- ===================================================== -->
+<section id="Engagement_&_Anniversaries" class="page">
+
+<h2>Engagement & Anniversaries</h2>
+
+<div class="grid">
+
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Engagement_&_Anniversaries/1.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Engagement_&_Anniversaries/2.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Engagement_&_Anniversaries/3.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Engagement_&_Anniversaries/4.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Engagement_&_Anniversaries/5.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Engagement_&_Anniversaries/6.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Engagement_&_Anniversaries/7.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Engagement_&_Anniversaries/8.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Engagement_&_Anniversaries/9.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Engagement_&_Anniversaries/10.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Engagement_&_Anniversaries/11.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Engagement_&_Anniversaries/12.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Engagement_&_Anniversaries/13.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Engagement_&_Anniversaries/14.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Engagement_&_Anniversaries/15.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Engagement_&_Anniversaries/16.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Engagement_&_Anniversaries/17.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Engagement_&_Anniversaries/18.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Engagement_&_Anniversaries/19.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Engagement_&_Anniversaries/20.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Engagement_&_Anniversaries/21.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Engagement_&_Anniversaries/22.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Engagement_&_Anniversaries/23.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Engagement_&_Anniversaries/24.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Engagement_&_Anniversaries/25.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Engagement_&_Anniversaries/26.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Engagement_&_Anniversaries/27.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Engagement_&_Anniversaries/28.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Engagement_&_Anniversaries/29.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Engagement_&_Anniversaries/30.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Engagement_&_Anniversaries/31.jpg">
+    </div>
+    
+</div>
+</section>
+<section id="Mehndi_&_Maiyom_&_Dhoolki" class="page">
+
+<h2>Mehndi & Maiyom & Dhoolki</h2>
+
+<div class="grid">
+
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Mehndi_&_Maiyom_&_Dhoolki/1.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Mehndi_&_Maiyom_&_Dhoolki/2.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Mehndi_&_Maiyom_&_Dhoolki/3.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Mehndi_&_Maiyom_&_Dhoolki/4.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Mehndi_&_Maiyom_&_Dhoolki/5.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Mehndi_&_Maiyom_&_Dhoolki/6.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Mehndi_&_Maiyom_&_Dhoolki/7.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Mehndi_&_Maiyom_&_Dhoolki/8.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Mehndi_&_Maiyom_&_Dhoolki/9.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Mehndi_&_Maiyom_&_Dhoolki/10.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Mehndi_&_Maiyom_&_Dhoolki/11.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Mehndi_&_Maiyom_&_Dhoolki/12.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Mehndi_&_Maiyom_&_Dhoolki/13.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Mehndi_&_Maiyom_&_Dhoolki/14.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Mehndi_&_Maiyom_&_Dhoolki/15.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Mehndi_&_Maiyom_&_Dhoolki/16.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Mehndi_&_Maiyom_&_Dhoolki/17.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Mehndi_&_Maiyom_&_Dhoolki/18.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Mehndi_&_Maiyom_&_Dhoolki/19.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Mehndi_&_Maiyom_&_Dhoolki/20.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Mehndi_&_Maiyom_&_Dhoolki/21.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Mehndi_&_Maiyom_&_Dhoolki/22.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Mehndi_&_Maiyom_&_Dhoolki/23.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Mehndi_&_Maiyom_&_Dhoolki/24.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Mehndi_&_Maiyom_&_Dhoolki/25.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Mehndi_&_Maiyom_&_Dhoolki/26.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Mehndi_&_Maiyom_&_Dhoolki/27.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Mehndi_&_Maiyom_&_Dhoolki/28.jpg">
+    </div>
+</div>
+</section>
+<section id="Walima_&_Baraat" class="page">
+
+<h2>Walima & Baraat</h2>
+
+<div class="grid">
+
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/1.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/2.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/3.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/4.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/5.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/6.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/7.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/8.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/9.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/10.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/11.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/12.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/13.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/14.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/15.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/16.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/17.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/18.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/19.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/20.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/21.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/22.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/23.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/24.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/25.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/26.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/27.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/28.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/29.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/30.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/31.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/32.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/33.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/34.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/35.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/36.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/37.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/38.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/39.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/40.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/41.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/42.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/43.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/44.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/45.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/46.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/47.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/48.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/49.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/50.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/51.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/52.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/53.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/54.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/55.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/56.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/57.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/58.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/59.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/60.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/61.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/62.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Wedding_Events/Walima_&_Baraat/63.jpg">
+    </div>
+    
+</div>
+</section>
+<section id="Birthday_parties" class="page">
+
+<h2>Birthday parties</h2>
+
+<div class="grid">
+
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Birthday_parties/1.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Birthday_parties/2.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Birthday_parties/3.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Birthday_parties/4.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Birthday_parties/5.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Birthday_parties/6.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Birthday_parties/7.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Birthday_parties/8.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Birthday_parties/9.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Birthday_parties/10.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Birthday_parties/11.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Birthday_parties/12.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Birthday_parties/13.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Birthday_parties/14.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Birthday_parties/15.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Birthday_parties/16.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Birthday_parties/17.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Birthday_parties/18.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Birthday_parties/19.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Birthday_parties/20.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Birthday_parties/21.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Birthday_parties/22.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Birthday_parties/23.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Birthday_parties/24.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/Birthday_parties/1.mp4" controls></video>
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/Birthday_parties/2.mp4" controls></video>
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/Birthday_parties/3.mp4" controls></video>
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/Birthday_parties/4.mp4" controls></video>
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/Birthday_parties/5.mp4" controls></video>
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/Birthday_parties/6.mp4" controls></video>
+    </div>
+    
+</div>
+</section>
+<section id="New_year_parties" class="page">
+
+<h2>New year parties</h2>
+
+<div class="grid">
+
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/1.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/2.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/3.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/4.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/5.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/6.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/7.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/8.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/9.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/10.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/11.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/12.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/13.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/14.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/15.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/16.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/17.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/18.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/19.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/20.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/21.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/22.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/23.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/24.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/25.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/26.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/27.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/28.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/29.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/30.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/31.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/32.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/33.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/34.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/35.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/36.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/37.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/38.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/39.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/40.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/41.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/42.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/43.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/44.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/45.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/46.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/47.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/48.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/49.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/50.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/51.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/52.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/53.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/54.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/55.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/56.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/57.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/58.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/59.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/60.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/61.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/62.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/63.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/64.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/65.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/66.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/67.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/68.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/69.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/70.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/71.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/72.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/73.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/74.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/75.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/76.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/77.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/78.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/79.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/80.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/81.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/82.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/83.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/84.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/85.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/86.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/87.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/88.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/New_year_parties/89.jpg">
+    </div>
+
+</div>
+</section>
+<section id="Private_parties" class="page">
+
+<h2>Private parties</h2>
+
+<div class="grid">
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/1.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/2.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/3.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/4.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/5.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/6.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/7.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/8.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/9.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/10.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/11.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/12.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/13.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/14.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/15.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/16.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/17.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/18.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/19.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/20.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/21.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/22.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/23.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/24.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/25.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/26.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/27.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/28.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/29.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/30.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/31.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/32.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/33.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/34.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/35.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/36.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/37.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/38.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/39.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/40.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/41.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/42.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/43.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/44.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/45.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/46.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/47.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/48.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/49.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/50.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/51.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/52.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/53.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/54.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/55.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/56.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/57.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/58.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/59.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/60.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/61.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/62.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/63.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/64.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/65.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/66.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/67.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/68.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/69.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/70.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/71.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/72.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/73.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/74.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/75.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/76.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/77.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/78.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/79.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/80.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/81.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/82.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/83.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/84.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/85.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/86.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/87.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/88.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/89.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/90.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/91.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/92.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/93.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/94.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/95.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/96.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/97.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/98.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/99.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/100.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/101.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/102.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/103.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/104.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/105.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/106.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/107.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/108.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/109.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/110.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/111.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/112.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/113.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/114.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/115.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/116.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/117.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/118.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/119.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/120.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/121.jpg">
+    </div>    
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Parties/Private_parties/122.jpg">
+    </div>
+    
+</div>
+</section>
+<section id="Birthday_events" class="page">
+
+<h2>Birthday events</h2>
+
+<div class="grid">
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/1.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/2.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/3.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/4.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/5.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/6.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/7.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/8.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/9.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/10.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/11.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/12.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/13.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/14.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/15.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/16.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/17.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/18.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/19.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/20.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/21.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/22.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/23.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/24.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/25.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/26.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/27.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/28.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/29.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/30.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/31.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/32.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/33.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/34.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/35.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/36.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/37.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/38.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/39.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/40.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/41.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/42.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/43.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/44.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/45.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/46.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/47.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/48.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Birthday_events/49.jpg">
+    </div>
+</div>
+</section>
+<section id="Family_gatherings_&_get-togethers" class="page">
+
+<h2>Family gatherings & get-togethers</h2>
+
+<div class="grid">
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Family_gatherings_&_get-togethers/1.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Family_gatherings_&_get-togethers/2.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Family_gatherings_&_get-togethers/3.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Family_gatherings_&_get-togethers/4.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Family_gatherings_&_get-togethers/5.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Family_gatherings_&_get-togethers/6.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Family_gatherings_&_get-togethers/7.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Family_gatherings_&_get-togethers/8.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Family_gatherings_&_get-togethers/9.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Family_gatherings_&_get-togethers/10.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Family_gatherings_&_get-togethers/11.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Family_gatherings_&_get-togethers/12.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Family_gatherings_&_get-togethers/13.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Family_gatherings_&_get-togethers/14.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Family_gatherings_&_get-togethers/15.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Family_gatherings_&_get-togethers/16.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Family_gatherings_&_get-togethers/17.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Family_gatherings_&_get-togethers/18.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Family_gatherings_&_get-togethers/19.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Family_gatherings_&_get-togethers/20.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Family_gatherings_&_get-togethers/21.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Family_gatherings_&_get-togethers/22.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Family_gatherings_&_get-togethers/23.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Family_gatherings_&_get-togethers/24.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Family_gatherings_&_get-togethers/25.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Family_gatherings_&_get-togethers/26.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Family_gatherings_&_get-togethers/27.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Family_gatherings_&_get-togethers/28.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Family_gatherings_&_get-togethers/29.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Family_gatherings_&_get-togethers/30.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Family_gatherings_&_get-togethers/31.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Family_gatherings_&_get-togethers/32.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Family_gatherings_&_get-togethers/33.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Family_gatherings_&_get-togethers/34.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Family_gatherings_&_get-togethers/35.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Family_gatherings_&_get-togethers/36.jpg">
+    </div>
+    
+</div>
+</section>
+<section id="Surprise_events" class="page">
+    
+    <h2>Surprise events</h2>
+    
+<div class="grid">
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Surprise_events/1.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Surprise_events/2.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Surprise_events/3.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Surprise_events/4.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Surprise_events/5.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Surprise_events/6.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Surprise_events/7.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Surprise_events/8.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Surprise_events/9.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Surprise_events/10.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Surprise_events/11.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Surprise_events/12.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Surprise_events/13.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Surprise_events/14.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Surprise_events/15.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Surprise_events/16.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Surprise_events/17.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Surprise_events/18.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Surprise_events/19.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Surprise_events/20.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Surprise_events/21.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Surprise_events/22.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Surprise_events/23.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Surprise_events/24.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Surprise_events/25.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Surprise_events/26.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Surprise_events/27.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Surprise_events/28.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Surprise_events/29.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Surprise_events/30.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Surprise_events/31.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Surprise_events/32.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Surprise_events/33.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Surprise_events/34.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Surprise_events/35.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Private_Events/Surprise_events/36.jpg">
+    </div>
+</div>
+</section>
+<section id="Halloween" class="page">
+
+<h2>Halloween</h2>
+
+<div class="grid">
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Theme_events/Halloween/1.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Theme_events/Halloween/2.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Theme_events/Halloween/3.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Theme_events/Halloween/4.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Theme_events/Halloween/5.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Theme_events/Halloween/6.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Theme_events/Halloween/7.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Theme_events/Halloween/8.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Theme_events/Halloween/9.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Theme_events/Halloween/10.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Theme_events/Halloween/11.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Theme_events/Halloween/12.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Theme_events/Halloween/13.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Theme_events/Halloween/14.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Theme_events/Halloween/15.jpg">
+    </div>
+</div>
+</section>
+<section id="abc_123" class="page">
+
+<h2>abc 123</h2>
+
+<div class="grid">
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Theme_events/abc_123/1.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Theme_events/abc_123/2.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Theme_events/abc_123/3.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Theme_events/abc_123/4.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Theme_events/abc_123/5.jpg">
+    </div>
+</div>
+</section>
+<section id="Baby_boss" class="page">
+    
+    <h2>Baby boss</h2>
+    
+    <div class="grid">
+        <div class="card" onclick="openLightbox(this)">
+            <img src="Theme_events/Baby_boss/1.jpg">
+        </div>
+        <div class="card" onclick="openLightbox(this)">
+            <img src="Theme_events/Baby_boss/2.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Theme_events/Baby_boss/3.jpg">
+    </div>
+</div>
+</section>
+<section id="Cars" class="page">
+    
+    <h2>Cars</h2>
+    
+    <div class="grid">
+        <div class="card" onclick="openLightbox(this)">
+            <img src="Theme_events/Cars/1.jpg">
+        </div>
+    </div>
+</section>
+<section id="Micky_mouse" class="page">
+    
+    <h2>Micky mouse</h2>
+    
+    <div class="grid">
+        <div class="card" onclick="openLightbox(this)">
+            <img src="Theme_events\Micky_mouse/1.jpg">
+        </div>
+        <div class="card" onclick="openLightbox(this)">
+            <img src="Theme_events\Micky_mouse/2.jpg">
+        </div>
+    </div>
+</section>
+<section id="Teddy_bears" class="page">
+    
+    <h2>Teddy bears</h2>
+    
+    <div class="grid">
+        <div class="card" onclick="openLightbox(this)">
+            <img src="Theme_events\Teddy_bears/1.jpg">
+        </div>
+        <div class="card" onclick="openLightbox(this)">
+            <img src="Theme_events\Teddy_bears/2.jpg">
+        </div>
+        <div class="card" onclick="openLightbox(this)">
+            <img src="Theme_events\Teddy_bears/3.jpg">
+        </div>
+        <div class="card" onclick="openLightbox(this)">
+            <img src="Theme_events\Teddy_bears/4.jpg">
+        </div>
+    </div>
+</section>
+<section id="Wild" class="page">
+    
+    <h2>Baby boss</h2>
+    
+    <div class="grid">
+        <div class="card" onclick="openLightbox(this)">
+            <img src="Theme_events\Wild/1.jpg">
+        </div>
+        <div class="card" onclick="openLightbox(this)">
+            <img src="Theme_events\Wild/2.jpg">
+        </div>
+        <div class="card" onclick="openLightbox(this)">
+            <img src="Theme_events\Wild/3.jpg">
+        </div>
+    </div>
+</section>
+<section id="One" class="page">
+
+<h2>One</h2>
+
+<div class="grid">
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Theme_events\one/1.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Theme_events\one/2.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Theme_events\one/3.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Theme_events\one/4.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Theme_events\one/5.jpg">
+    </div>
+    
+</div>
+</div>
+</section>
+<!-- ================= LIGHTBOX ================= -->
+<div class="lightbox" id="lightbox">
+    
+    <button class="close" onclick="closeLightbox()">X</button>
+<button class="prev" onclick="prev()">‹</button>
+<button class="next" onclick="next()">›</button>
+
+<img id="lightbox-img">
+
+</div>
+
+<!-- ================= SCRIPT ================= -->
+<script>
+
+let images = [];
+let index = 0;
+let currentFilter = 'photo';
+const topBar = document.getElementById('topBar');
+
+function hideAll(){
+    document.querySelectorAll('.page').forEach(p=>{
+        p.classList.remove('active');
+    });
+}
+
+function goMain(){
+    hideAll();
+    document.getElementById('main').classList.add('active');
+    setTopBarMode('no-switch'); // Hide switches
+}
+
+function openSub(id){
+    hideAll();
+    images = [];
+    document.getElementById(id).classList.add('active');
+    setTopBarMode('no-switch'); // Hide switches
+}
+
+function openEvent(id){
+    hideAll();
+    const page = document.getElementById(id);
+    page.classList.add('active');
+    
+    images = Array.from(page.querySelectorAll('.card img'));
+    
+    // ✅ SHOW SWITCHES ONLY IN EVENT PAGES
+    setTopBarMode('event');
+    setTimeout(applyFilter, 50);
+}
+
+// ✅ CONTROL SWITCH VISIBILITY
+function setTopBarMode(mode){
+    if(mode === 'event'){
+        topBar.classList.remove('no-switch');
+        topBar.classList.add('event-mode');
+        resetFilter(); // Reset to Photos
+    } else {
+        topBar.classList.remove('event-mode');
+        topBar.classList.add('no-switch');
+    }
+}
+
+function filterType(type){
+    document.querySelectorAll('.switch-btn').forEach(b=>b.classList.remove('active'));
+    event.target.classList.add('active');
+    
+    currentFilter = type;
+    applyFilter();
+}
+
+function applyFilter(){
+    const activePage = document.querySelector('.page.active');
+    if(!activePage || activePage.id === 'main') return;
+    
+    const cards = activePage.querySelectorAll('.card');
+    
+    cards.forEach(card => {
+        const img = card.querySelector("img");
+        const video = card.querySelector("video");
+        
+        if(currentFilter === 'photo' && img && !video){
+            card.style.display = "block";
+        }
+        else if(currentFilter === 'video' && video){
+            card.style.display = "block";
+        }
+        else {
+            card.style.display = "none";
+        }
+    });
+}
+
+function resetFilter(){
+    currentFilter = 'photo';
+    const photoBtn = document.querySelector('.switch-btn:nth-child(1)');
+    const videoBtn = document.querySelector('.switch-btn:nth-child(2)');
+    if(photoBtn) photoBtn.classList.add('active');
+    if(videoBtn) videoBtn.classList.remove('active');
+    
+    const activePage = document.querySelector('.page.active');
+    if(activePage){
+        activePage.querySelectorAll('.card').forEach(card => {
+            card.style.display = "block";
+        });
+    }
+}
+
+function goBack(){
+    if(document.getElementById('main').classList.contains('active')){
+        window.location.href = "index.html";
+    } else {
+        goMain();
+    }
+}
+
+function openLightbox(card){
+    const img = card.querySelector('img');
+    if(!img) return;
+    
+    index = images.indexOf(img);
+    document.getElementById('lightbox').classList.add('active');
+    document.getElementById('lightbox-img').src = img.src;
+}
+
+function closeLightbox(){
+    document.getElementById('lightbox').classList.remove('active');
+}
+
+function next(){
+    index = (index + 1) % images.length;
+    document.getElementById('lightbox-img').src = images[index].src;
+}
+
+function prev(){
+    index = (index - 1 + images.length) % images.length;
+    document.getElementById('lightbox-img').src = images[index].src;
+}
+
+</script>
+
+</body>
+</html>
