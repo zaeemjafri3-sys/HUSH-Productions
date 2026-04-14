@@ -119,6 +119,25 @@ body{
     text-align:center;
     padding:10px;
 }
+/* ================= VIDEO FIXES ================= */
+.card video {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+}
+
+.lightbox video {
+    max-width: 90%;
+    max-height: 90%;
+    width: auto;
+    height: auto;
+}
+
+/* Ensure cards with videos look good */
+.card:has(video) img {
+    display: none;
+}
 
 /* ================= LIGHTBOX ================= */
 .lightbox{
@@ -131,7 +150,20 @@ body{
     background:rgba(0,0,0,0.95);
     justify-content:center;
     align-items:center;
-    z-index:1000;
+}
+
+#lightbox-content{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width:100%;
+    height:100%;
+}
+
+#lightbox-img,
+#lightbox-video{
+    margin:auto;
+    display:block;
 }
 .lightbox.active{display:flex;}
 
@@ -445,7 +477,15 @@ h2 {
     <div class="card" onclick="openLightbox(this)">
         <img src="Wedding_Events/Engagement_&_Anniversaries/31.jpg">
     </div>
-    
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Wedding_Events/Engagement_&_Anniversaries/1.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Wedding_Events/Engagement_&_Anniversaries/2.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Wedding_Events/Engagement_&_Anniversaries/3.mp4">
+    </div>
 </div>
 </section>
 <section id="Mehndi_&_Maiyom_&_Dhoolki" class="page">
@@ -538,14 +578,32 @@ h2 {
     <div class="card" onclick="openLightbox(this)">
         <img src="Wedding_Events/Mehndi_&_Maiyom_&_Dhoolki/28.jpg">
     </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Wedding_Events/Mehndi_&_Maiyom_&_Dhoolki/1.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Wedding_Events/Mehndi_&_Maiyom_&_Dhoolki/2.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Wedding_Events/Mehndi_&_Maiyom_&_Dhoolki/3.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Wedding_Events/Mehndi_&_Maiyom_&_Dhoolki/4.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Wedding_Events/Mehndi_&_Maiyom_&_Dhoolki/5.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Wedding_Events/Mehndi_&_Maiyom_&_Dhoolki/6.mp4">
+    </div>
 </div>
 </section>
 <section id="Walima_&_Baraat" class="page">
-
-<h2>Walima & Baraat</h2>
-
+    
+    <h2>Walima & Baraat</h2>
+    
 <div class="grid">
-
+    
     <div class="card" onclick="openLightbox(this)">
         <img src="Wedding_Events/Walima_&_Baraat/1.jpg">
     </div>
@@ -735,14 +793,32 @@ h2 {
     <div class="card" onclick="openLightbox(this)">
         <img src="Wedding_Events/Walima_&_Baraat/63.jpg">
     </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Wedding_Events/Walima_&_Baraat/1.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Wedding_Events/Walima_&_Baraat/2.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Wedding_Events/Walima_&_Baraat/3.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Wedding_Events/Walima_&_Baraat/4.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Wedding_Events/Walima_&_Baraat/5.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Wedding_Events/Walima_&_Baraat/6.mp4">
+    </div>
     
 </div>
 </section>
 <section id="Birthday_parties" class="page">
-
-<h2>Birthday parties</h2>
-
-<div class="grid">
+    
+    <h2>Birthday parties</h2>
+    
+    <div class="grid">
 
     <div class="card" onclick="openLightbox(this)">
         <img src="Parties/Birthday_parties/1.jpg">
@@ -817,32 +893,32 @@ h2 {
         <img src="Parties/Birthday_parties/24.jpg">
     </div>
     <div class="card" onclick="openLightbox(this)">
-        <video src="Parties/Birthday_parties/1.mp4" controls></video>
+        <video src="Parties/Birthday_parties/1.mp4">
     </div>
     <div class="card" onclick="openLightbox(this)">
-        <video src="Parties/Birthday_parties/2.mp4" controls></video>
+        <video src="Parties/Birthday_parties/2.mp4">
     </div>
     <div class="card" onclick="openLightbox(this)">
-        <video src="Parties/Birthday_parties/3.mp4" controls></video>
+        <video src="Parties/Birthday_parties/3.mp4">
     </div>
     <div class="card" onclick="openLightbox(this)">
-        <video src="Parties/Birthday_parties/4.mp4" controls></video>
+        <video src="Parties/Birthday_parties/4.mp4">
     </div>
     <div class="card" onclick="openLightbox(this)">
-        <video src="Parties/Birthday_parties/5.mp4" controls></video>
+        <video src="Parties/Birthday_parties/5.mp4">
     </div>
     <div class="card" onclick="openLightbox(this)">
-        <video src="Parties/Birthday_parties/6.mp4" controls></video>
+        <video src="Parties/Birthday_parties/6.mp4">
     </div>
     
 </div>
 </section>
 <section id="New_year_parties" class="page">
-
-<h2>New year parties</h2>
-
-<div class="grid">
-
+    
+    <h2>New year parties</h2>
+    
+    <div class="grid">
+        
     <div class="card" onclick="openLightbox(this)">
         <img src="Parties/New_year_parties/1.jpg">
     </div>
@@ -1110,7 +1186,55 @@ h2 {
     <div class="card" onclick="openLightbox(this)">
         <img src="Parties/New_year_parties/89.jpg">
     </div>
-
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/New_year_parties/1.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/New_year_parties/2.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/New_year_parties/3.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/New_year_parties/4.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/New_year_parties/5.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/New_year_parties/6.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/New_year_parties/7.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/New_year_parties/8.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/New_year_parties/9.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/New_year_parties/10.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/New_year_parties/11.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/New_year_parties/12.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/New_year_parties/13.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/New_year_parties/14.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/New_year_parties/15.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/New_year_parties/16.mp4">
+    </div>
+    
 </div>
 </section>
 <section id="Private_parties" class="page">
@@ -1484,8 +1608,65 @@ h2 {
     <div class="card" onclick="openLightbox(this)">
         <img src="Parties/Private_parties/122.jpg">
     </div>
-    
-</div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/New_year_parties/1.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/New_year_parties/2.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/New_year_parties/3.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/New_year_parties/4.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/New_year_parties/5.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/New_year_parties/6.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/New_year_parties/7.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/New_year_parties/8.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/New_year_parties/9.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/New_year_parties/10.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/New_year_parties/11.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/New_year_parties/12.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/New_year_parties/13.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/New_year_parties/14.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/New_year_parties/15.mp4">
+        </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/New_year_parties/16.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/New_year_parties/17.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/New_year_parties/18.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Parties/New_year_parties/19.mp4">
+    </div>
+        
+    </div>
 </section>
 <section id="Birthday_events" class="page">
 
@@ -1639,15 +1820,45 @@ h2 {
     <div class="card" onclick="openLightbox(this)">
         <img src="Private_Events/Birthday_events/49.jpg">
     </div>
-</div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Private_Events/Birthday_events/1.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Private_Events/Birthday_events/2.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Private_Events/Birthday_events/3.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Private_Events/Birthday_events/4.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Private_Events/Birthday_events/5.mp4">
+        </div>
+        <div class="card" onclick="openLightbox(this)">
+            <video src="Private_Events/Birthday_events/6.mp4">
+            </div>
+            <div class="card" onclick="openLightbox(this)">
+        <video src="Private_Events/Birthday_events/7.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Private_Events/Birthday_events/8.mp4">
+        </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Private_Events/Birthday_events/9.mp4">
+        </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Private_Events/Birthday_events/10.mp4">
+        </div>
+    </div>
 </section>
 <section id="Family_gatherings_&_get-togethers" class="page">
-
-<h2>Family gatherings & get-togethers</h2>
-
-<div class="grid">
-    <div class="card" onclick="openLightbox(this)">
-        <img src="Private_Events/Family_gatherings_&_get-togethers/1.jpg">
+    
+    <h2>Family gatherings & get-togethers</h2>
+    
+    <div class="grid">
+        <div class="card" onclick="openLightbox(this)">
+            <img src="Private_Events/Family_gatherings_&_get-togethers/1.jpg">
     </div>
     <div class="card" onclick="openLightbox(this)">
         <img src="Private_Events/Family_gatherings_&_get-togethers/2.jpg">
@@ -1754,6 +1965,18 @@ h2 {
     <div class="card" onclick="openLightbox(this)">
         <img src="Private_Events/Family_gatherings_&_get-togethers/36.jpg">
     </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Private_Events/Family_gatherings_&_get-togethers/1.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Private_Events/Family_gatherings_&_get-togethers/2.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Private_Events/Family_gatherings_&_get-togethers/3.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Private_Events/Family_gatherings_&_get-togethers/4.mp4">
+    </div>
     
 </div>
 </section>
@@ -1761,9 +1984,9 @@ h2 {
     
     <h2>Surprise events</h2>
     
-<div class="grid">
-    <div class="card" onclick="openLightbox(this)">
-        <img src="Private_Events/Surprise_events/1.jpg">
+    <div class="grid">
+        <div class="card" onclick="openLightbox(this)">
+            <img src="Private_Events/Surprise_events/1.jpg">
     </div>
     <div class="card" onclick="openLightbox(this)">
         <img src="Private_Events/Surprise_events/2.jpg">
@@ -1922,6 +2145,27 @@ h2 {
     <div class="card" onclick="openLightbox(this)">
         <img src="Theme_events/Halloween/15.jpg">
     </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Theme_events/Halloween/1.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Theme_events/Halloween/2.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Theme_events/Halloween/3.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Theme_events/Halloween/4.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Theme_events/Halloween/5.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Theme_events/Halloween/6.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Theme_events/Halloween/7.mp4">
+    </div>
 </div>
 </section>
 <section id="abc_123" class="page">
@@ -1950,15 +2194,21 @@ h2 {
     
     <h2>Baby boss</h2>
     
-    <div class="grid">
-        <div class="card" onclick="openLightbox(this)">
-            <img src="Theme_events/Baby_boss/1.jpg">
-        </div>
-        <div class="card" onclick="openLightbox(this)">
-            <img src="Theme_events/Baby_boss/2.jpg">
+<div class="grid">
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Theme_events/Baby_boss/1.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Theme_events/Baby_boss/2.jpg">
     </div>
     <div class="card" onclick="openLightbox(this)">
         <img src="Theme_events/Baby_boss/3.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Theme_events/Baby_boss/1.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Theme_events/Baby_boss/2.mp4">
     </div>
 </div>
 </section>
@@ -1966,11 +2216,18 @@ h2 {
     
     <h2>Cars</h2>
     
-    <div class="grid">
-        <div class="card" onclick="openLightbox(this)">
-            <img src="Theme_events/Cars/1.jpg">
-        </div>
+<div class="grid">
+    <div class="card" onclick="openLightbox(this)">
+        <img src="Theme_events/Cars/1.jpg">
     </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Theme_events/Cars/1.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Theme_events/Cars/2.mp4">
+    </div>
+    
+</div>
 </section>
 <section id="Micky_mouse" class="page">
     
@@ -1991,16 +2248,19 @@ h2 {
     
     <div class="grid">
         <div class="card" onclick="openLightbox(this)">
-            <img src="Theme_events\Teddy_bears/1.jpg">
+            <img src="Theme_events/Teddy_bears/1.jpg">
         </div>
         <div class="card" onclick="openLightbox(this)">
-            <img src="Theme_events\Teddy_bears/2.jpg">
+            <img src="Theme_events/Teddy_bears/2.jpg">
         </div>
         <div class="card" onclick="openLightbox(this)">
-            <img src="Theme_events\Teddy_bears/3.jpg">
+            <img src="Theme_events/Teddy_bears/3.jpg">
         </div>
         <div class="card" onclick="openLightbox(this)">
-            <img src="Theme_events\Teddy_bears/4.jpg">
+            <img src="Theme_events/Teddy_bears/4.jpg">
+        </div>
+        <div class="card" onclick="openLightbox(this)">
+            <video src="Theme_events/Teddy_bears/1.mp4">
         </div>
     </div>
 </section>
@@ -2010,13 +2270,22 @@ h2 {
     
     <div class="grid">
         <div class="card" onclick="openLightbox(this)">
-            <img src="Theme_events\Wild/1.jpg">
+            <img src="Theme_events/Wild/1.jpg">
         </div>
         <div class="card" onclick="openLightbox(this)">
-            <img src="Theme_events\Wild/2.jpg">
+            <img src="Theme_events/Wild/2.jpg">
         </div>
         <div class="card" onclick="openLightbox(this)">
-            <img src="Theme_events\Wild/3.jpg">
+            <img src="Theme_events/Wild/3.jpg">
+        </div>
+        <div class="card" onclick="openLightbox(this)">
+            <video src="Theme_events/Wild/1.mp4">
+        </div>
+            <div class="card" onclick="openLightbox(this)">
+            <video src="Theme_events/Wild/2.mp4">
+        </div>
+        <div class="card" onclick="openLightbox(this)">
+            <video src="Theme_events/Wild/3.mp4">
         </div>
     </div>
 </section>
@@ -2026,45 +2295,70 @@ h2 {
 
 <div class="grid">
     <div class="card" onclick="openLightbox(this)">
-        <img src="Theme_events\one/1.jpg">
+        <img src="Theme_events/one/1.jpg">
     </div>
     <div class="card" onclick="openLightbox(this)">
-        <img src="Theme_events\one/2.jpg">
+        <img src="Theme_events/one/2.jpg">
     </div>
     <div class="card" onclick="openLightbox(this)">
-        <img src="Theme_events\one/3.jpg">
+        <img src="Theme_events/one/3.jpg">
     </div>
     <div class="card" onclick="openLightbox(this)">
-        <img src="Theme_events\one/4.jpg">
+        <img src="Theme_events/one/4.jpg">
     </div>
     <div class="card" onclick="openLightbox(this)">
-        <img src="Theme_events\one/5.jpg">
+        <img src="Theme_events/one/5.jpg">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Theme_events/one/1.mp4">
+    </div>
+        <div class="card" onclick="openLightbox(this)">
+        <video src="Theme_events/one/2.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Theme_events/one/3.mp4">
+    </div>
+        <div class="card" onclick="openLightbox(this)">
+        <video src="Theme_events/one/4.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Theme_events/one/5.mp4">
+    </div>
+        <div class="card" onclick="openLightbox(this)">
+        <video src="Theme_events/one/6.mp4">
+    </div>
+    <div class="card" onclick="openLightbox(this)">
+        <video src="Theme_events/one/7.mp4">
     </div>
     
 </div>
 </div>
 </section>
-<!-- ================= LIGHTBOX ================= -->
+
+<!-- ================= LIGHTBOX (VIDEO SUPPORT) ================= -->
 <div class="lightbox" id="lightbox">
-    
     <button class="close" onclick="closeLightbox()">X</button>
-<button class="prev" onclick="prev()">‹</button>
-<button class="next" onclick="next()">›</button>
-
-<img id="lightbox-img">
-
+    <button class="prev" onclick="prev()">‹</button>
+    <button class="next" onclick="next()">›</button>
+    
+    <!-- Container for both img and video -->
+    <div id="lightbox-content">
+        <img id="lightbox-img" style="display: none;">
+        <video id="lightbox-video" style="display: none;" controls preload="metadata">
+            Your browser does not support the video tag.
+        </video>
+    </div>
 </div>
 
 <!-- ================= SCRIPT ================= -->
 <script>
-
-let images = [];
+let mediaItems = []; // Changed from images to mediaItems
 let index = 0;
 let currentFilter = 'photo';
 const topBar = document.getElementById('topBar');
 
 function hideAll(){
-    document.querySelectorAll('.page').forEach(p=>{
+    document.querySelectorAll('.page').forEach(p => {
         p.classList.remove('active');
     });
 }
@@ -2072,14 +2366,13 @@ function hideAll(){
 function goMain(){
     hideAll();
     document.getElementById('main').classList.add('active');
-    setTopBarMode('no-switch'); // Hide switches
+    setTopBarMode('no-switch');
 }
 
 function openSub(id){
     hideAll();
-    images = [];
     document.getElementById(id).classList.add('active');
-    setTopBarMode('no-switch'); // Hide switches
+    setTopBarMode('no-switch');
 }
 
 function openEvent(id){
@@ -2087,19 +2380,18 @@ function openEvent(id){
     const page = document.getElementById(id);
     page.classList.add('active');
     
-    images = Array.from(page.querySelectorAll('.card img'));
+    // ✅ FIXED: Collect ALL media (img + video)
+    mediaItems = Array.from(page.querySelectorAll('.card img, .card video'));
     
-    // ✅ SHOW SWITCHES ONLY IN EVENT PAGES
     setTopBarMode('event');
     setTimeout(applyFilter, 50);
 }
 
-// ✅ CONTROL SWITCH VISIBILITY
 function setTopBarMode(mode){
     if(mode === 'event'){
         topBar.classList.remove('no-switch');
         topBar.classList.add('event-mode');
-        resetFilter(); // Reset to Photos
+        resetFilter();
     } else {
         topBar.classList.remove('event-mode');
         topBar.classList.add('no-switch');
@@ -2107,7 +2399,7 @@ function setTopBarMode(mode){
 }
 
 function filterType(type){
-    document.querySelectorAll('.switch-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.switch-btn').forEach(b => b.classList.remove('active'));
     event.target.classList.add('active');
     
     currentFilter = type;
@@ -2159,30 +2451,59 @@ function goBack(){
     }
 }
 
+// ✅ FIXED: Lightbox supports both images AND videos
 function openLightbox(card){
     const img = card.querySelector('img');
-    if(!img) return;
+    const video = card.querySelector('video');
     
-    index = images.indexOf(img);
+    if(!img && !video) return;
+    
+    index = mediaItems.indexOf(img || video);
+    showMedia(index);
     document.getElementById('lightbox').classList.add('active');
-    document.getElementById('lightbox-img').src = img.src;
+}
+
+function showMedia(idx){
+    const item = mediaItems[idx];
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxVideo = document.getElementById('lightbox-video');
+    
+    if(item.tagName === 'IMG'){
+        lightboxImg.style.display = 'block';
+        lightboxVideo.style.display = 'none';
+        lightboxImg.src = item.src;
+    } else if(item.tagName === 'VIDEO'){
+        lightboxVideo.style.display = 'block';
+        lightboxImg.style.display = 'none';
+        lightboxVideo.src = item.src;
+        lightboxVideo.load(); // Reload video
+        lightboxVideo.play().catch(e => console.log('Autoplay prevented'));
+    }
 }
 
 function closeLightbox(){
     document.getElementById('lightbox').classList.remove('active');
+    document.getElementById('lightbox-video').pause();
 }
 
 function next(){
-    index = (index + 1) % images.length;
-    document.getElementById('lightbox-img').src = images[index].src;
+    index = (index + 1) % mediaItems.length;
+    showMedia(index);
 }
 
 function prev(){
-    index = (index - 1 + images.length) % images.length;
-    document.getElementById('lightbox-img').src = images[index].src;
+    index = (index - 1 + mediaItems.length) % mediaItems.length;
+    showMedia(index);
 }
 
+// Keyboard navigation
+document.addEventListener('keydown', function(e) {
+    if(!document.getElementById('lightbox').classList.contains('active')) return;
+    
+    if(e.key === 'ArrowRight') next();
+    if(e.key === 'ArrowLeft') prev();
+    if(e.key === 'Escape') closeLightbox();
+});
 </script>
-
 </body>
 </html>
